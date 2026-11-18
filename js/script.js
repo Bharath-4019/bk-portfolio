@@ -1,3 +1,4 @@
+
 /* =====================================
    LOADER
 ===================================== */
@@ -6,38 +7,39 @@ window.addEventListener("load", () => {
 
     const loader = document.getElementById("loader");
 
-    if(loader){
+    if (loader) {
 
         loader.style.opacity = "0";
 
         setTimeout(() => {
-
             loader.style.display = "none";
-
-        },500);
+        }, 500);
 
     }
 
 });
 
+
 /* =====================================
    SMOOTH SCROLL
 ===================================== */
 
-document.querySelectorAll('nav a').forEach(link=>{
+document.querySelectorAll('nav a[href^="#"]').forEach(link => {
 
-    link.addEventListener("click",function(e){
+    link.addEventListener("click", function (e) {
 
-        e.preventDefault();
+        const targetId = this.getAttribute("href");
 
-        const target=document.querySelector(this.getAttribute("href"));
+        if (!targetId || targetId === "#") return;
 
-        if(target){
+        const target = document.querySelector(targetId);
+
+        if (target) {
+
+            e.preventDefault();
 
             target.scrollIntoView({
-
-                behavior:"smooth"
-
+                behavior: "smooth"
             });
 
         }
@@ -46,308 +48,184 @@ document.querySelectorAll('nav a').forEach(link=>{
 
 });
 
+
 /* =====================================
    ACTIVE NAVIGATION
 ===================================== */
 
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
 
-window.addEventListener("scroll",()=>{
+function updateActiveNavigation() {
 
-    let current="";
+    let current = "";
 
-    sections.forEach(section=>{
+    sections.forEach(section => {
 
-        const sectionTop=section.offsetTop-120;
+        const sectionTop = section.offsetTop - 120;
 
-        if(scrollY>=sectionTop){
-
-            current=section.getAttribute("id");
-
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
         }
 
     });
 
-    navLinks.forEach(link=>{
+    navLinks.forEach(link => {
 
         link.classList.remove("active");
 
-        if(link.getAttribute("href")==="#"+current){
-
+        if (link.getAttribute("href") === "#" + current) {
             link.classList.add("active");
-
         }
 
     });
 
-});
+}
+
+window.addEventListener("scroll", updateActiveNavigation);
+updateActiveNavigation();
+
 
 /* =====================================
    REVEAL ANIMATION
 ===================================== */
 
-const reveals=document.querySelectorAll("section");
+const reveals = document.querySelectorAll("section");
 
-function reveal(){
+function reveal() {
 
-    const windowHeight=window.innerHeight;
+    const windowHeight = window.innerHeight;
 
-    reveals.forEach(sec=>{
+    reveals.forEach(section => {
 
-        const top=sec.getBoundingClientRect().top;
+        const top = section.getBoundingClientRect().top;
 
-        if(top<windowHeight-120){
-
-            sec.classList.add("fade-in");
-
+        if (top < windowHeight - 120) {
+            section.classList.add("fade-in");
         }
 
     });
 
 }
 
-window.addEventListener("scroll",reveal);
-
+window.addEventListener("scroll", reveal);
 reveal();
+
 
 /* =====================================
    SCROLL TO TOP BUTTON
 ===================================== */
 
-const topBtn=document.createElement("button");
+const topBtn = document.createElement("button");
 
-topBtn.innerHTML="↑";
-
-topBtn.id="topBtn";
+topBtn.innerHTML = "↑";
+topBtn.id = "topBtn";
+topBtn.setAttribute("aria-label", "Scroll to top");
 
 document.body.appendChild(topBtn);
 
-topBtn.style.position="fixed";
-topBtn.style.bottom="25px";
-topBtn.style.right="25px";
-topBtn.style.width="50px";
-topBtn.style.height="50px";
-topBtn.style.borderRadius="50%";
-topBtn.style.border="none";
-topBtn.style.background="#38bdf8";
-topBtn.style.color="#fff";
-topBtn.style.fontSize="20px";
-topBtn.style.cursor="pointer";
-topBtn.style.display="none";
-topBtn.style.zIndex="999";
+Object.assign(topBtn.style, {
 
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>500){
-
-        topBtn.style.display="block";
-
-    }else{
-
-        topBtn.style.display="none";
-
-    }
+    position: "fixed",
+    bottom: "25px",
+    right: "25px",
+    width: "50px",
+    height: "50px",
+    borderRadius: "50%",
+    border: "none",
+    background: "#A855F7",
+    color: "#fff",
+    fontSize: "20px",
+    cursor: "pointer",
+    display: "none",
+    zIndex: "999"
 
 });
 
-topBtn.addEventListener("click",()=>{
+window.addEventListener("scroll", () => {
+
+    topBtn.style.display =
+        window.scrollY > 500 ? "block" : "none";
+
+});
+
+topBtn.addEventListener("click", () => {
 
     window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
+        top: 0,
+        behavior: "smooth"
     });
 
 });
+
 
 /* =====================================
    TYPING EFFECT
 ===================================== */
 
-const professions=[
+const professions = [
 
-"Computer Science Engineer",
-
-"Full Stack Developer",
-
-"Software Developer",
-
-"Web Developer",
-
-"AI Enthusiast"
+    "Computer Science Engineer",
+    "Full Stack Developer",
+    "Software Developer",
+    "Web Developer",
+    "AI Enthusiast"
 
 ];
 
-const title=document.querySelector(".hero-content h2");
+const title = document.querySelector(".hero-content h2");
 
-let wordIndex=0;
-let charIndex=0;
-let deleting=false;
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-function typeEffect(){
+function typeEffect() {
 
-    if(!title) return;
+    if (!title) return;
 
-    const current=professions[wordIndex];
+    const current = professions[wordIndex];
 
-    if(!deleting){
+    if (!deleting) {
 
-        title.textContent=current.substring(0,charIndex++);
+        title.textContent = current.substring(0, charIndex);
+        charIndex++;
 
-        if(charIndex>current.length){
+        if (charIndex > current.length) {
 
-            deleting=true;
-
-            setTimeout(typeEffect,1500);
-
+            deleting = true;
+            setTimeout(typeEffect, 1500);
             return;
 
         }
 
-    }else{
+    } else {
 
-        title.textContent=current.substring(0,charIndex--);
+        title.textContent = current.substring(0, charIndex);
+        charIndex--;
 
-        if(charIndex===0){
+        if (charIndex < 0) {
 
-            deleting=false;
-
-            wordIndex=(wordIndex+1)%professions.length;
+            charIndex = 0;
+            deleting = false;
+            wordIndex = (wordIndex + 1) % professions.length;
 
         }
 
     }
 
-    setTimeout(typeEffect,deleting?50:120);
+    setTimeout(typeEffect, deleting ? 50 : 120);
 
 }
 
-typeEffect();
+if (title) {
+    typeEffect();
+}
+
 
 /* =====================================
-   CONTACT FORM VALIDATION
+   CONTACT FORM SUBMISSION
+   FORMSPREE INTEGRATION
 ===================================== */
-
-const form=document.querySelector("form");
-
-if(form){
-
-form.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const inputs=form.querySelectorAll("input,textarea");
-
-let valid=true;
-
-inputs.forEach(input=>{
-
-if(input.value.trim()===""){
-
-input.style.border="2px solid red";
-
-valid=false;
-
-}else{
-
-input.style.border="2px solid #38bdf8";
-
-}
-
-});
-
-if(valid){
-
-alert("Message Sent Successfully!");
-
-form.reset();
-
-}
-
-});
-
-}
-
-/* =====================================
-   STICKY HEADER
-===================================== */
-
-const header=document.querySelector("header");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>80){
-
-header.style.background="rgba(15,23,42,.95)";
-
-header.style.boxShadow="0 10px 25px rgba(0,0,0,.3)";
-
-}else{
-
-header.style.background="rgba(15,23,42,.75)";
-
-header.style.boxShadow="none";
-
-}
-
-});
-
-/* =====================================
-   PROJECT CARD HOVER
-===================================== */
-
-const cards=document.querySelectorAll(".project-card");
-
-cards.forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.style.transform="translateY(-12px) scale(1.02)";
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform="translateY(0) scale(1)";
-
-});
-
-});
-
-/* =====================================
-   CONSOLE MESSAGE
-===================================== */
-
-console.log("%cWelcome to BK Portfolio 🚀",
-"color:#38bdf8;font-size:20px;font-weight:bold;");
-/* ===========================
-   MOBILE MENU
-=========================== */
-
-const menuBtn = document.querySelector(".menu-toggle");
-const navbar = document.getElementById("navbar");
-
-menuBtn.addEventListener("click",()=>{
-
-navbar.classList.toggle("active");
-
-});
-
-document.querySelectorAll("nav a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-navbar.classList.remove("active");
-
-});
-
-});
-
-
-// Contact Form Submission
 
 const contactForm = document.getElementById("contact-form");
 
@@ -360,19 +238,34 @@ if (contactForm) {
         const submitButton = document.getElementById("contact-submit");
         const statusMessage = document.getElementById("form-status");
 
-        submitButton.disabled = true;
-        submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+        if (!submitButton || !statusMessage) return;
 
-        statusMessage.textContent = "";
+        // Check form validity
+        if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
+            return;
+        }
+
+        submitButton.disabled = true;
+
+        submitButton.innerHTML =
+            'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
+        statusMessage.textContent = "Sending your message...";
+        statusMessage.style.color = "#A855F7";
 
         try {
 
             const response = await fetch(contactForm.action, {
+
                 method: "POST",
+
                 body: new FormData(contactForm),
+
                 headers: {
                     "Accept": "application/json"
                 }
+
             });
 
             if (response.ok) {
@@ -386,8 +279,12 @@ if (contactForm) {
 
             } else {
 
+                const result = await response.json().catch(() => ({}));
+
                 statusMessage.textContent =
-                    "Unable to send your message. Please try again.";
+                    result.errors
+                        ? result.errors.map(error => error.message).join(", ")
+                        : "Unable to send your message. Please try again.";
 
                 statusMessage.style.color = "#ef4444";
 
@@ -395,47 +292,126 @@ if (contactForm) {
 
         } catch (error) {
 
+            console.error("Contact form error:", error);
+
             statusMessage.textContent =
                 "Network error. Please check your internet connection.";
 
             statusMessage.style.color = "#ef4444";
 
-        }
+        } finally {
 
-        submitButton.disabled = false;
-        submitButton.innerHTML =
-            'Send Message <i class="fas fa-paper-plane"></i>';
+            submitButton.disabled = false;
+
+            submitButton.innerHTML =
+                'Send Message <i class="fas fa-paper-plane"></i>';
+
+        }
 
     });
 
 }
+
+
+/* =====================================
+   STICKY HEADER
+===================================== */
+
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+
+    if (!header) return;
+
+    if (window.scrollY > 80) {
+
+        header.style.background = "rgba(15, 10, 30, 0.95)";
+        header.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+
+    } else {
+
+        header.style.background = "";
+        header.style.boxShadow = "";
+
+    }
+
+});
+
+
+/* =====================================
+   PROJECT CARD HOVER
+===================================== */
+
+const cards = document.querySelectorAll(".project-card");
+
+cards.forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        card.style.transform = "translateY(-12px) scale(1.02)";
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform = "translateY(0) scale(1)";
+
+    });
+
+});
+
+
+/* =====================================
+   MOBILE MENU
+===================================== */
+
 const menuToggle = document.querySelector(".menu-toggle");
 const navbar = document.querySelector("#navbar");
 
 if (menuToggle && navbar) {
 
     menuToggle.addEventListener("click", () => {
+
         navbar.classList.toggle("active");
 
         const icon = menuToggle.querySelector("i");
 
         if (icon) {
+
             icon.classList.toggle("fa-bars");
             icon.classList.toggle("fa-xmark");
+
         }
+
     });
 
     navbar.querySelectorAll("a").forEach(link => {
+
         link.addEventListener("click", () => {
+
             navbar.classList.remove("active");
 
             const icon = menuToggle.querySelector("i");
 
             if (icon) {
+
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
+
             }
+
         });
+
     });
 
 }
+
+
+/* =====================================
+   CONSOLE MESSAGE
+===================================== */
+
+console.log(
+    "%cWelcome to BK Portfolio 🚀",
+    "color:#A855F7;font-size:20px;font-weight:bold;"
+);
