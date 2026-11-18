@@ -409,3 +409,33 @@ if (contactForm) {
     });
 
 }
+const menuToggle = document.querySelector(".menu-toggle");
+const navbar = document.querySelector("#navbar");
+
+if (menuToggle && navbar) {
+
+    menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("active");
+
+        const icon = menuToggle.querySelector("i");
+
+        if (icon) {
+            icon.classList.toggle("fa-bars");
+            icon.classList.toggle("fa-xmark");
+        }
+    });
+
+    navbar.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            navbar.classList.remove("active");
+
+            const icon = menuToggle.querySelector("i");
+
+            if (icon) {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        });
+    });
+
+}
