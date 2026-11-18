@@ -345,3 +345,67 @@ navbar.classList.remove("active");
 });
 
 });
+
+
+// Contact Form Submission
+
+const contactForm = document.getElementById("contact-form");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const submitButton = document.getElementById("contact-submit");
+        const statusMessage = document.getElementById("form-status");
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
+        statusMessage.textContent = "";
+
+        try {
+
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: new FormData(contactForm),
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (response.ok) {
+
+                statusMessage.textContent =
+                    "Thank you! Your message has been sent successfully.";
+
+                statusMessage.style.color = "#22c55e";
+
+                contactForm.reset();
+
+            } else {
+
+                statusMessage.textContent =
+                    "Unable to send your message. Please try again.";
+
+                statusMessage.style.color = "#ef4444";
+
+            }
+
+        } catch (error) {
+
+            statusMessage.textContent =
+                "Network error. Please check your internet connection.";
+
+            statusMessage.style.color = "#ef4444";
+
+        }
+
+        submitButton.disabled = false;
+        submitButton.innerHTML =
+            'Send Message <i class="fas fa-paper-plane"></i>';
+
+    });
+
+}

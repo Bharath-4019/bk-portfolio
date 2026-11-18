@@ -687,12 +687,14 @@ rel="stylesheet">
 
 <!-- Experience -->
 
+
 <section id="experience">
 
     <h2>Professional Experience</h2>
 
     <div class="timeline">
 
+        <!-- Experience 1 -->
         <div class="timeline-item">
 
             <div class="timeline-dot"></div>
@@ -702,7 +704,6 @@ rel="stylesheet">
                 <span class="timeline-date">2025 – 2026</span>
 
                 <h3>Assistant Head – Advertisement Department</h3>
-
                 <h4>Draupathi IT Solutions</h4>
 
                 <p>
@@ -717,10 +718,18 @@ rel="stylesheet">
                     <span>Video Editing</span>
                 </div>
 
-            </div>
+                <a href="media/DIT.jpeg"
+                   class="certificate-download"
+                   download>
+                    <i class="fas fa-download"></i>
+                    Download Experience Certificate
+                </a>
 
+            </div>
         </div>
 
+
+        <!-- Experience 2 -->
         <div class="timeline-item">
 
             <div class="timeline-dot"></div>
@@ -730,7 +739,6 @@ rel="stylesheet">
                 <span class="timeline-date">2025</span>
 
                 <h3>Python Programming Intern</h3>
-
                 <h4>Internship / Training Organization</h4>
 
                 <p>
@@ -745,10 +753,50 @@ rel="stylesheet">
                     <span>Problem Solving</span>
                 </div>
 
-            </div>
+                <a href="certificates/python-internship-certificate.pdf"
+                   class="certificate-download"
+                   download>
+                    <i class="fas fa-download"></i>
+                    Download Internship Certificate
+                </a>
 
+            </div>
         </div>
 
+
+        <!-- Experience 3 -->
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <span class="timeline-date">2024 – 2025</span>
+
+                <h3>Full-Stack Developer Intern</h3>
+                <h4>NLC Private Limited</h4>
+
+                <p>
+                    Worked on web development projects, creating responsive websites,
+                    implementing front-end and back-end functionalities,
+                    and collaborating with the team to deliver high-quality web applications.
+                </p>
+
+                <div class="experience-tags">
+                    <span>Front-End Development</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+
+                <a href="media/NLC.jpeg"
+                   class="certificate-download"
+                   download>
+                    <i class="fas fa-download"></i>
+                    Download Experience Certificate
+                </a>
+
+            </div>
         </div>
 
     </div>
@@ -780,6 +828,9 @@ rel="stylesheet">
             <span class="education-status">
                 Undergraduate
             </span>
+            <span class="education-status">
+                CGPA: 8.3/10
+            </span>
 
         </div>
 
@@ -790,7 +841,7 @@ rel="stylesheet">
                 <i class="fas fa-school"></i>
             </div>
 
-            <span class="education-year">2020 – 2022</span>
+            <span class="education-year">2022 – 2023</span>
 
             <h3>Higher Secondary Education</h3>
 
@@ -800,6 +851,9 @@ rel="stylesheet">
 
             <span class="education-status">
                 Completed
+            </span>
+            <span class="education-status">
+                Percentage: 60.5%
             </span>
 
         </div>
@@ -821,6 +875,9 @@ rel="stylesheet">
 
             <span class="education-status">
                 Completed
+            </span>
+            <span class="education-status">
+                Percentage: 100%
             </span>
 
         </div>
@@ -1003,58 +1060,61 @@ rel="stylesheet">
         </div>
 
         <!-- Contact Form -->
-        <div class="contact-form">
+        
+<div class="contact-form">
 
-            <h3>Send Me a Message</h3>
+    <h3>Send Me a Message</h3>
 
-            <form action="mailto:kspbharathkalyan@gmail.com"
-                  method="post"
-                  enctype="text/plain">
+    <form id="contact-form"
+          action="https://formspree.io/f/xnpdvgyd"
+          method="POST">
 
-                <div class="input-group">
-                    <label for="contact-name">Your Name</label>
-                    <input type="text"
-                           id="contact-name"
-                           name="Name"
-                           placeholder="Enter your name"
-                           required>
-                </div>
-
-                <div class="input-group">
-                    <label for="contact-email">Your Email</label>
-                    <input type="email"
-                           id="contact-email"
-                           name="Email"
-                           placeholder="Enter your email"
-                           required>
-                </div>
-
-                <div class="input-group">
-                    <label for="contact-subject">Subject</label>
-                    <input type="text"
-                           id="contact-subject"
-                           name="Subject"
-                           placeholder="Enter message subject"
-                           required>
-                </div>
-
-                <div class="input-group">
-                    <label for="contact-message">Message</label>
-                    <textarea id="contact-message"
-                              name="Message"
-                              rows="5"
-                              placeholder="Write your message..."
-                              required></textarea>
-                </div>
-
-                <button type="submit" class="contact-submit">
-                    Send Message
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-
-            </form>
-
+        <div class="input-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text"
+                   id="contact-name"
+                   name="name"
+                   placeholder="Enter your name"
+                   required>
         </div>
+
+        <div class="input-group">
+            <label for="contact-email">Your Email</label>
+            <input type="email"
+                   id="contact-email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text"
+                   id="contact-subject"
+                   name="subject"
+                   placeholder="Enter message subject"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message"
+                      name="message"
+                      rows="5"
+                      placeholder="Write your message..."
+                      required></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit" id="contact-submit">
+            Send Message
+            <i class="fas fa-paper-plane"></i>
+        </button>
+
+        <p id="form-status" role="status" aria-live="polite"></p>
+
+    </form>
+
+</div>
 
     </div>
 
@@ -1074,9 +1134,9 @@ rel="stylesheet">
 
 <div>
 
-<a href="#"><i class="fab fa-linkedin"></i></a>
+<a href="https://www.linkedin.com/in/bharath-kalyan-p-7627aa293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
 
-<a href="#"><i class="fab fa-github"></i></a>
+<a href="https://github.com/bharathkalyan005"><i class="fab fa-github"></i></a>
 
 <a href="#"><i class="fab fa-instagram"></i></a>
 

@@ -2679,3 +2679,49 @@ footer a:hover {
     }
 
 }
+
+
+/* Experience Certificate Download Button */
+
+.certificate-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 11px 18px;
+
+    background: linear-gradient(135deg, #A855F7, #7E22CE);
+    color: #ffffff;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 8px;
+    border: 1px solid rgba(192, 132, 252, 0.4);
+
+    transition: all 0.3s ease;
+}
+
+.certificate-download:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 18px rgba(168, 85, 247, 0.4);
+    background: linear-gradient(135deg, #C084FC, #9333EA);
+}
+
+.certificate-download i {
+    font-size: 15px;
+}
+
+
+#form-status {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.contact-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
