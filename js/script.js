@@ -3,22 +3,30 @@
    LOADER
 ===================================== */
 
-window.addEventListener("load", () => {
+/* =====================================
+   FAST LOADER
+===================================== */
 
-    const loader = document.getElementById("loader");
+const loader = document.getElementById("loader");
 
-    if (loader) {
+function hideLoader() {
 
-        loader.style.opacity = "0";
+    if (!loader) return;
 
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 500);
+    loader.style.opacity = "0";
+    loader.style.pointerEvents = "none";
 
-    }
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 300);
 
-});
+}
 
+// Hide after page resources load
+window.addEventListener("load", hideLoader);
+
+// Fallback: do not keep the loader indefinitely
+setTimeout(hideLoader, 1500);
 
 /* =====================================
    SMOOTH SCROLL
