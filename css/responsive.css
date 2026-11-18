@@ -1,0 +1,574 @@
+
+/* =========================================
+   BK PORTFOLIO - RESPONSIVE DESIGN
+   Desktop | Laptop | Tablet | Mobile
+========================================= */
+
+/* Global responsive fixes */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+section {
+    width: 100%;
+    scroll-margin-top: 90px;
+}
+
+input,
+textarea,
+button {
+    max-width: 100%;
+}
+
+/* =========================================
+   LARGE LAPTOPS AND DESKTOPS
+========================================= */
+
+@media (min-width: 1200px) {
+
+    section {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    #home {
+        min-height: 90vh;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(42px, 4.5vw, 64px);
+    }
+
+    .hero-image img {
+        max-width: 400px;
+    }
+
+}
+
+/* =========================================
+   LAPTOPS
+========================================= */
+
+@media (max-width: 1199px) {
+
+    header {
+        padding: 18px 5%;
+    }
+
+    nav ul {
+        gap: 16px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+    }
+
+    section {
+        padding: 85px 6%;
+    }
+
+    #home {
+        gap: 35px;
+    }
+
+    .hero-content h1 {
+        font-size: 46px;
+    }
+
+    .hero-image img {
+        width: min(340px, 100%);
+    }
+
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 992px) {
+
+    /* Header */
+
+    header {
+        padding: 16px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    nav ul li a {
+        font-size: 12px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    /* Hero */
+
+    #home {
+        min-height: auto;
+        padding-top: 120px;
+        padding-bottom: 80px;
+        gap: 25px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-content h2 {
+        font-size: 22px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-image img {
+        width: min(300px, 100%);
+    }
+
+    /* General sections */
+
+    section h2 {
+        font-size: 34px;
+    }
+
+    /* Skills */
+
+    .skills-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* Projects */
+
+    .project-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Contact */
+
+    .contact-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+}
+
+/* =========================================
+   SMALL TABLETS AND LARGE PHONES
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* Header */
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 25px;
+        color: #C084FC;
+        z-index: 1002;
+    }
+
+    #navbar {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-height: calc(100vh - 75px);
+        overflow-y: auto;
+        padding: 20px;
+        background: #10101C;
+        border-top: 1px solid rgba(168, 85, 247, 0.3);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    #navbar.active {
+        display: block;
+    }
+
+    #navbar ul {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    #navbar ul li {
+        width: 100%;
+        list-style: none;
+    }
+
+    #navbar ul li a {
+        display: block;
+        padding: 13px 10px;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+    }
+
+    .theme-btn {
+        margin-left: auto;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    /* Hero */
+
+    #home {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 65px 6%;
+        gap: 35px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(30px, 7vw, 42px);
+        line-height: 1.3;
+    }
+
+    .hero-content h2 {
+        font-size: 20px;
+    }
+
+    .hero-content p {
+        max-width: 550px;
+        margin: 15px auto 25px;
+        line-height: 1.8;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: min(280px, 75vw);
+    }
+
+    /* Sections */
+
+    section {
+        padding: 70px 6%;
+    }
+
+    section h2 {
+        font-size: 30px;
+        margin-bottom: 35px;
+    }
+
+    /* Skills */
+
+    .skills-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    /* Projects */
+
+    .project-container {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+        margin: auto;
+    }
+
+    /* Experience */
+
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline-card {
+        padding: 22px;
+    }
+
+    .timeline-card h3 {
+        font-size: 20px;
+    }
+
+    /* Education */
+
+    .education-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .education-card {
+        padding: 25px 18px;
+    }
+
+    /* Certifications */
+
+    .certificate-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* GitHub */
+
+    .github-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .github-card {
+        width: 100%;
+        max-width: 500px;
+        overflow: hidden;
+    }
+
+    .github-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Contact */
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+    }
+
+    /* Footer */
+
+    footer {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+
+}
+
+/* =========================================
+   MOBILE PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    /* Header */
+
+    header {
+        padding: 13px 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .menu-toggle {
+        font-size: 22px;
+    }
+
+    /* Hero */
+
+    #home {
+        padding: 55px 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-content h2 {
+        font-size: 17px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+    }
+
+    .hero-image img {
+        width: min(230px, 70vw);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Sections */
+
+    section {
+        padding: 60px 5%;
+    }
+
+    section h2 {
+        font-size: 27px;
+        margin-bottom: 28px;
+    }
+
+    /* Skills */
+
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .skill-card {
+        padding: 22px;
+    }
+
+    /* Projects */
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    .project-card img {
+        height: 190px;
+    }
+
+    /* Experience */
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-card {
+        padding: 18px;
+    }
+
+    .timeline-card h3 {
+        font-size: 18px;
+    }
+
+    .timeline-card h4 {
+        font-size: 14px;
+    }
+
+    .timeline-card p {
+        font-size: 13px;
+    }
+
+    /* Education */
+
+    .education-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Certifications */
+
+    .certificate-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+
+    .contact-info,
+    .contact-form {
+        padding: 22px 18px;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 20px;
+    }
+
+    .contact-item {
+        align-items: flex-start;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 14px;
+    }
+
+    /* Footer */
+
+    footer p {
+        font-size: 12px;
+    }
+
+}
+
+/* =========================================
+   EXTRA SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
+    .hero-content h2 {
+        font-size: 16px;
+    }
+
+    section h2 {
+        font-size: 24px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 18px 14px;
+    }
+
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
